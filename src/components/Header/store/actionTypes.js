@@ -1,0 +1,1 @@
+export const SET_HEADER_SEARCH='header/setHeaderSearch'

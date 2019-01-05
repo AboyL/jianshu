@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
-import HeaderReducer from './reducers/header.reducer'
+import { reducer as HeaderReducer } from '../components/Header/store'
 export default combineReducers({
-  header:HeaderReducer
+  header: HeaderReducer
 })
 
 

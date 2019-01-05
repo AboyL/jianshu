@@ -10,6 +10,7 @@ import {
   Button
 } from './style'
 import { connect } from 'react-redux'
+import { actionCreators } from './store'
 const Header = (props) => {
   return (
     <HeaderWrapper>
@@ -44,11 +45,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     setHeaderSearch (e) {
-      const action = {
-        type: 'set_header_search',
-        value: e.target.value
-      }
-      dispatch(action)
+      dispatch(actionCreators.headerSearch(e.target.value))
     }
   }
 }
