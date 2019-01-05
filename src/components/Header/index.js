@@ -38,7 +38,7 @@ const Header = (props) => {
 }
 const mapStateToProps = (state) => {
   return {
-    headerSearch: state.headerSearch
+    headerSearch: state.header.headerSearch
   }
 }
 const mapDispatchToProps = (dispatch) => {

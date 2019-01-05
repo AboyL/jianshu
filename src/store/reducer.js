@@ -1,9 +1,7 @@
-const defaultState = {
-  headerSearch: ''
-}
-export default (state = defaultState, actions) => {
-  if(actions.type==='set_header_search'){
-    return {headerSearch:actions.value}
-  }
-  return state
-}
+import { combineReducers } from 'redux'
+import HeaderReducer from './reducers/header.reducer'
+export default combineReducers({
+  header:HeaderReducer
+})
+
+
