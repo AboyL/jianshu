@@ -39,7 +39,7 @@ const Header = (props) => {
 }
 const mapStateToProps = (state) => {
   return {
-    headerSearch: state.header.headerSearch
+    headerSearch: state.header.get('headerSearch')
   }
 }
 const mapDispatchToProps = (dispatch) => {
