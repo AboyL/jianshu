@@ -4061,6 +4061,10 @@ immer@1.7.2:
   version "1.7.2"
   resolved "http://registry.npm.taobao.org/immer/download/immer-1.7.2.tgz#a51e9723c50b27e132f6566facbec1c85fc69547"
 
+immutable-redux@^0.3.0:
+  version "0.3.0"
+  resolved "http://registry.npm.taobao.org/immutable-redux/download/immutable-redux-0.3.0.tgz#02554e770244926b86fd1f0e471a8cd4d7f7c632"
+
 immutable@^4.0.0-rc.12:
   version "4.0.0-rc.12"
   resolved "http://registry.npm.taobao.org/immutable/download/immutable-4.0.0-rc.12.tgz#ca59a7e4c19ae8d9bf74a97bdf0f6e2f2a5d0217"
@@ -7088,6 +7092,10 @@ recursive-readdir@2.2.2:
   resolved "http://registry.npm.taobao.org/recursive-readdir/download/recursive-readdir-2.2.2.tgz#9946fb3274e1628de6e36b2f6714953b4845094f"
   dependencies:
     minimatch "3.0.4"
+
+redux-immutable@^4.0.0:
+  version "4.0.0"
+  resolved "http://registry.npm.taobao.org/redux-immutable/download/redux-immutable-4.0.0.tgz#3a1a32df66366462b63691f0e1dc35e472bbc9f3"
 
 redux@^4.0.1:
   version "4.0.1"

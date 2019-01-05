@@ -39,7 +39,9 @@ const Header = (props) => {
 }
 const mapStateToProps = (state) => {
   return {
-    headerSearch: state.header.get('headerSearch')
+    // headerSearch: state.header.get('headerSearch') // x
+    headerSearch: state.get('header').get('headerSearch') // 对
+    // headerSearch: state.getIn(['header','headerSearch']) // 也可以
   }
 }
 const mapDispatchToProps = (dispatch) => {
