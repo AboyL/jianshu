@@ -43,7 +43,7 @@ color:#333333;
 export const SearchWrapper = styled.div`
   float:left;
   position: relative;
-  .iconfont{
+  .search{
     position:absolute;
     right:5px;
     bottom: 5px;
@@ -76,7 +76,7 @@ export const NavSearch = styled.input.attrs({
   }
   &:focus{
     width:200px;
-    &+.iconfont{
+    &+.search{
       background:#777;
       color:white;
     }
@@ -97,15 +97,32 @@ export const SearchInfoTitle = styled.div`
   font-size:14px;
   color:#969696; 
 `
-export const SearchInfoSwicth=styled.span `
+export const SearchInfoSwicth = styled.span`
   float:right;
   font-size:12px;
   cursor:pointer;
+  @keyframes spin{
+    from{
+      transform:rotate(0deg);
+    }
+    to{
+      transform:rotate(360deg);
+    }
+  }
+  .spin{
+    display:block;
+    float:left;
+    margin-right:10px;
+  }
+  .spining{
+    transform-origin:center center;
+    animation:.2s spin;
+  }
 `
-export const SearchInfoList=styled.div`
+export const SearchInfoList = styled.div`
   overflow:hidden;
 `
-export const SearchInfoItem=styled.a`
+export const SearchInfoItem = styled.a`
   display:block;
   float:left;
   line-height:20px;

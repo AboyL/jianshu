@@ -20,13 +20,23 @@ import { actionCreators } from './store'
 const Header = (props) => {
   const [focused, setFocused] = useState(0)
   const [mouseIn, setMouseIn] = useState(false)
+  const [spin, setSpin] = useState(false)
   const getSearchAear = (list) => {
     if (focused || mouseIn) {
       return (
         <SearchInfo onMouseEnter={() => { setMouseIn(true) }} onMouseLeave={() => { setMouseIn(false) }}>
           <SearchInfoTitle>
             热门搜索
-        <SearchInfoSwicth onClick={() => props.handleSwitch(props.hotSeachPage, props.hotSearchTotal)}>换一换</SearchInfoSwicth>
+        <SearchInfoSwicth onClick={() => {
+              setSpin(true);
+              setTimeout(() => {
+                setSpin(false)
+              }, 200);
+              props.handleSwitch(props.hotSeachPage, props.hotSearchTotal)
+            }}>
+              <i className={"iconfont icon-spin spin " + (spin ? 'spining' : '')}></i>
+              换一换
+        </SearchInfoSwicth>
           </SearchInfoTitle>
           <SearchInfoList>
             {
@@ -63,7 +73,7 @@ const Header = (props) => {
             onChange={props.setHeaderSearch}
             onFocus={() => { setFocused(true); props.setHotSearchList() }}
             onBlur={() => setFocused(false)} />
-          <i className="iconfont icon-sousuo"></i>
+          <i className="iconfont icon-sousuo search"></i>
           {getSearchAear(props.hotSearchList)}
         </SearchWrapper>
       </Nav>
