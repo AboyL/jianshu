@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   HeaderWrapper,
   Logo,
@@ -6,12 +6,43 @@ import {
   NavItem,
   SearchWrapper,
   NavSearch,
+  SearchInfo,
+  SearchInfoTitle,
+  SearchInfoSwicth,
+  SearchInfoList,
+  SearchInfoItem,
   Additions,
   Button
 } from './style'
 import { connect } from 'react-redux'
 import { actionCreators } from './store'
+const getSearchAear = (isShow) => {
+  if (isShow) {
+    return (
+      <SearchInfo>
+        <SearchInfoTitle>
+          热门搜索
+      <SearchInfoSwicth>换一换</SearchInfoSwicth>
+        </SearchInfoTitle>
+        <SearchInfoList>
+          <SearchInfoItem>教育</SearchInfoItem>
+          <SearchInfoItem>教育</SearchInfoItem>
+          <SearchInfoItem>教育</SearchInfoItem>
+          <SearchInfoItem>教育</SearchInfoItem>
+          <SearchInfoItem>教育</SearchInfoItem>
+          <SearchInfoItem>教育</SearchInfoItem>
+          <SearchInfoItem>教育</SearchInfoItem>
+          <SearchInfoItem>教育</SearchInfoItem>
+          <SearchInfoItem>教育</SearchInfoItem>
+        </SearchInfoList>
+      </SearchInfo>
+    )
+  } else {
+    return null
+  }
+}
 const Header = (props) => {
+  const [focused, setFocused] = useState(0)
   return (
     <HeaderWrapper>
       <Logo />
@@ -23,8 +54,13 @@ const Header = (props) => {
           <i className="iconfont icon-Aa"></i>
         </NavItem>
         <SearchWrapper>
-          <NavSearch value={props.headerSearch} onChange={props.setHeaderSearch} />
+          <NavSearch
+            value={props.headerSearch}
+            onChange={props.setHeaderSearch}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)} />
           <i className="iconfont icon-sousuo"></i>
+          {getSearchAear(focused)}
         </SearchWrapper>
       </Nav>
       <Additions>
