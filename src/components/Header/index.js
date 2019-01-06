@@ -71,7 +71,7 @@ const Header = (props) => {
           <NavSearch
             value={props.headerSearch}
             onChange={props.setHeaderSearch}
-            onFocus={() => { setFocused(true); props.setHotSearchList() }}
+            onFocus={() => { setFocused(true); props.setHotSearchList(props.hotSearchList) }}
             onBlur={() => setFocused(false)} />
           <i className="iconfont icon-sousuo search"></i>
           {getSearchAear(props.hotSearchList)}
@@ -101,8 +101,8 @@ const mapDispatchToProps = (dispatch) => {
     setHeaderSearch (e) {
       dispatch(actionCreators.headerSearch(e.target.value))
     },
-    setHotSearchList () {
-      dispatch(actionCreators.getHotSearchList())
+    setHotSearchList (list) {
+      if (list.size <= 0) dispatch(actionCreators.getHotSearchList())
     },
     handleSwitch (page, total) {
       if (page === total) {
