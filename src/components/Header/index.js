@@ -16,31 +16,37 @@ import {
 } from './style'
 import { connect } from 'react-redux'
 import { actionCreators } from './store'
-const getSearchAear = (isShow,list) => {
-  if (isShow) {
-    return (
-      <SearchInfo>
-        <SearchInfoTitle>
-          热门搜索
-      <SearchInfoSwicth>换一换</SearchInfoSwicth>
-        </SearchInfoTitle>
-        <SearchInfoList>
-          {
-            list.map(item=>{
-              return (
-                <SearchInfoItem key={item}>{item}</SearchInfoItem>
-              )
-            })
-          }
-        </SearchInfoList>
-      </SearchInfo>
-    )
-  } else {
-    return null
-  }
-}
+
 const Header = (props) => {
   const [focused, setFocused] = useState(0)
+  const [mouseIn, setMouseIn] = useState(false)
+  const getSearchAear = (list) => {
+    if (focused || mouseIn) {
+      return (
+        <SearchInfo onMouseEnter={() => { setMouseIn(true) }} onMouseLeave={() => { setMouseIn(false) }}>
+          <SearchInfoTitle>
+            热门搜索
+        <SearchInfoSwicth onClick={() => props.handleSwitch(props.hotSeachPage, props.hotSearchTotal)}>换一换</SearchInfoSwicth>
+          </SearchInfoTitle>
+          <SearchInfoList>
+            {
+              list
+                .filter((v, index) => index >= props.hotSeachPage * props.hotSeachPageSize
+                  && index < (props.hotSeachPage + 1) * props.hotSeachPageSize)
+                .map(item => {
+                  return (
+                    <SearchInfoItem key={item}>{item}</SearchInfoItem>
+                  )
+                })
+            }
+          </SearchInfoList>
+        </SearchInfo>
+      )
+    } else {
+      return null
+    }
+  }
+
   return (
     <HeaderWrapper>
       <Logo />
@@ -55,10 +61,10 @@ const Header = (props) => {
           <NavSearch
             value={props.headerSearch}
             onChange={props.setHeaderSearch}
-            onFocus={() => {setFocused(true);props.setHotSearchList()}}
+            onFocus={() => { setFocused(true); props.setHotSearchList() }}
             onBlur={() => setFocused(false)} />
           <i className="iconfont icon-sousuo"></i>
-          {getSearchAear(focused,props.hotSearchList)}
+          {getSearchAear(props.hotSearchList)}
         </SearchWrapper>
       </Nav>
       <Additions>
@@ -73,8 +79,11 @@ const Header = (props) => {
 }
 const mapStateToProps = (state) => {
   return {
-    headerSearch: state.getIn(['header','headerSearch']),
-    hotSearchList:state.getIn(['header','hotSearchList'])
+    headerSearch: state.getIn(['header', 'headerSearch']),
+    hotSearchList: state.getIn(['header', 'hotSearchList']),
+    hotSeachPage: state.getIn(['header', 'hotSeachPage']),
+    hotSeachPageSize: state.getIn(['header', 'hotSeachPageSize']),
+    hotSearchTotal: state.getIn(['header', 'hotSearchTotal']),
   }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -82,8 +91,15 @@ const mapDispatchToProps = (dispatch) => {
     setHeaderSearch (e) {
       dispatch(actionCreators.headerSearch(e.target.value))
     },
-    setHotSearchList(){
+    setHotSearchList () {
       dispatch(actionCreators.getHotSearchList())
+    },
+    handleSwitch (page, total) {
+      if (page === total) {
+        dispatch(actionCreators.hotSearchPageChange(0))
+      } else {
+        dispatch(actionCreators.hotSearchPageChange(++page))
+      }
     }
   }
 }
