@@ -16,7 +16,7 @@ import {
 } from './style'
 import { connect } from 'react-redux'
 import { actionCreators } from './store'
-const getSearchAear = (isShow) => {
+const getSearchAear = (isShow,list) => {
   if (isShow) {
     return (
       <SearchInfo>
@@ -25,15 +25,13 @@ const getSearchAear = (isShow) => {
       <SearchInfoSwicth>换一换</SearchInfoSwicth>
         </SearchInfoTitle>
         <SearchInfoList>
-          <SearchInfoItem>教育</SearchInfoItem>
-          <SearchInfoItem>教育</SearchInfoItem>
-          <SearchInfoItem>教育</SearchInfoItem>
-          <SearchInfoItem>教育</SearchInfoItem>
-          <SearchInfoItem>教育</SearchInfoItem>
-          <SearchInfoItem>教育</SearchInfoItem>
-          <SearchInfoItem>教育</SearchInfoItem>
-          <SearchInfoItem>教育</SearchInfoItem>
-          <SearchInfoItem>教育</SearchInfoItem>
+          {
+            list.map(item=>{
+              return (
+                <SearchInfoItem key={item}>{item}</SearchInfoItem>
+              )
+            })
+          }
         </SearchInfoList>
       </SearchInfo>
     )
@@ -57,10 +55,10 @@ const Header = (props) => {
           <NavSearch
             value={props.headerSearch}
             onChange={props.setHeaderSearch}
-            onFocus={() => setFocused(true)}
+            onFocus={() => {setFocused(true);props.setHotSearchList()}}
             onBlur={() => setFocused(false)} />
           <i className="iconfont icon-sousuo"></i>
-          {getSearchAear(focused)}
+          {getSearchAear(focused,props.hotSearchList)}
         </SearchWrapper>
       </Nav>
       <Additions>
@@ -75,15 +73,17 @@ const Header = (props) => {
 }
 const mapStateToProps = (state) => {
   return {
-    // headerSearch: state.header.get('headerSearch') // x
-    headerSearch: state.get('header').get('headerSearch') // 对
-    // headerSearch: state.getIn(['header','headerSearch']) // 也可以
+    headerSearch: state.getIn(['header','headerSearch']),
+    hotSearchList:state.getIn(['header','hotSearchList'])
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
     setHeaderSearch (e) {
       dispatch(actionCreators.headerSearch(e.target.value))
+    },
+    setHotSearchList(){
+      dispatch(actionCreators.getHotSearchList())
     }
   }
 }
