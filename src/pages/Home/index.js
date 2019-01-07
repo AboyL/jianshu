@@ -6,6 +6,8 @@ import {
 } from './style'
 import Topic from './components/Topic'
 import ArticleList from './components/ArticleList'
+import Recommend from './components/Recommend'
+
 const Home = () => {
   return (
     <HomeWrapper>
@@ -14,7 +16,9 @@ const Home = () => {
         <Topic/>
         <ArticleList/>
       </HomeLeft>
-      <HomeRight>right</HomeRight>
+      <HomeRight>
+        <Recommend/>
+      </HomeRight>
     </HomeWrapper>
   )
 }
