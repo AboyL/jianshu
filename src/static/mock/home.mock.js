@@ -23,6 +23,26 @@ Mock.mock('api/init_home', 'post', () => {
         imgUrl: '//upload-images.jianshu.io/upload_images/14240694-a98629656134b39e.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240',
         title: 'Vue',
         desc: 'Evan You（尤雨溪）（2018年11月16日）前几日的早上在 Vue Toronto 的主题演讲中预演了 Vue 3 。 利用现代浏览器支...'
+      },{
+        id: '2',
+        imgUrl: '//upload-images.jianshu.io/upload_images/11897912-31290f12188fa551?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240',
+        title: '广告',
+        desc: '用盲盒的方式买衣服——不同职业的人，发出了这封体验报告。'
+      }, {
+        id: '3',
+        imgUrl: '//upload-images.jianshu.io/upload_images/14240694-a98629656134b39e.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240',
+        title: 'Vue',
+        desc: 'Evan You（尤雨溪）（2018年11月16日）前几日的早上在 Vue Toronto 的主题演讲中预演了 Vue 3 。 利用现代浏览器支...'
+      },{
+        id: '4',
+        imgUrl: '//upload-images.jianshu.io/upload_images/11897912-31290f12188fa551?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240',
+        title: '广告',
+        desc: '用盲盒的方式买衣服——不同职业的人，发出了这封体验报告。'
+      }, {
+        id: '5',
+        imgUrl: '//upload-images.jianshu.io/upload_images/14240694-a98629656134b39e.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240',
+        title: 'Vue',
+        desc: 'Evan You（尤雨溪）（2018年11月16日）前几日的早上在 Vue Toronto 的主题演讲中预演了 Vue 3 。 利用现代浏览器支...'
       }],
       recommendList: [{
         id: '0',
