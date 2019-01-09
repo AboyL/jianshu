@@ -9,7 +9,6 @@ const defaultState = fromJS({
 export default (state = defaultState, action) => {
   switch (action.type) {
     case actionTypes.INIT_HOME:
-      console.log(action.data)
       return state.merge({
         topicList:action.topicList,
         articleList:action.articleList,

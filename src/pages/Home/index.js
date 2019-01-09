@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   HomeWrapper,
   HomeLeft,
@@ -6,15 +6,40 @@ import {
 } from './style'
 import { connect } from 'react-redux'
 import { actionCreators } from './store'
-
+import styled from 'styled-components'
 import Topic from './components/Topic'
 import ArticleList from './components/ArticleList'
 import Recommend from './components/Recommend'
-
+export const BackTop = styled.div`
+	position: fixed;
+	right: 100px;
+	bottom: 100px;
+	width: 60px;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	border: 1px solid #ccc;
+	font-size: 14px;
+`
 const Home = (props) => {
+  const [showTop, setShowTop] = useState(false)
   useEffect(() => {
     props.initHomeData()
   })
+  useEffect(() => {
+    const scrollEventer = (e) => {
+      setShowTop(document.documentElement.scrollTop > 100)
+    }
+    console.log('加绑定')
+    window.addEventListener('scroll', scrollEventer)
+    return () => {
+      console.log('解除')
+      window.removeEventListener('scroll', scrollEventer);
+    }
+  },[true])
+  const handleGoTop = () => {
+		window.scrollTo(0, 0);
+  }
   return (
     <HomeWrapper>
       <HomeLeft>
@@ -25,6 +50,7 @@ const Home = (props) => {
       <HomeRight>
         <Recommend />
       </HomeRight>
+      {showTop ? <BackTop onClick={() => handleGoTop()}>顶部</BackTop> : ''}
     </HomeWrapper>
   )
 }

@@ -11,7 +11,6 @@ const initHomeAction = (data) => ({
 export const initHome = () => {
   return (dispatch) => {
     Axios.post('api/init_home').then((res)=>{
-      console.log(res)
       dispatch(initHomeAction(res.data.data))
     })
   }
