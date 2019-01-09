@@ -101,23 +101,15 @@ export const SearchInfoSwicth = styled.span`
   float:right;
   font-size:12px;
   cursor:pointer;
-  @keyframes spin{
-    from{
-      transform:rotate(0deg);
-    }
-    to{
-      transform:rotate(360deg);
-    }
-  }
-  .spin{
-    display:block;
-    float:left;
-    margin-right:10px;
-  }
-  .spining{
-    transform-origin:center center;
-    animation:.2s spin;
-  }
+  .spin {
+		display: block;
+		float: left;
+		font-size: 12px;
+		margin-right: 2px;
+		transition: all .2s ease-in;
+		transform-origin: center center;
+    transform:rotate(${props=>props.spin+'deg'})
+	}
 `
 export const SearchInfoList = styled.div`
   overflow:hidden;

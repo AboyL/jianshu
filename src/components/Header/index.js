@@ -20,7 +20,7 @@ import { actionCreators } from './store'
 const Header = (props) => {
   const [focused, setFocused] = useState(0)
   const [mouseIn, setMouseIn] = useState(false)
-  const [spin, setSpin] = useState(false)
+  const [spin, setSpin] = useState(0)
   const getSearchAear = (list) => {
     if (focused || mouseIn) {
       return (
@@ -28,13 +28,12 @@ const Header = (props) => {
           <SearchInfoTitle>
             热门搜索
         <SearchInfoSwicth onClick={() => {
-              setSpin(true);
-              setTimeout(() => {
-                setSpin(false)
-              }, 200);
+              setSpin(spin+360);
               props.handleSwitch(props.hotSeachPage, props.hotSearchTotal)
-            }}>
-              <i className={"iconfont icon-spin spin " + (spin ? 'spining' : '')}></i>
+            }}
+            spin={spin}
+            >
+              <i className="iconfont icon-spin spin "></i>
               换一换
         </SearchInfoSwicth>
           </SearchInfoTitle>
