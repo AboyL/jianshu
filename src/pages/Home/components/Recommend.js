@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 const RecommendWrapper = styled.div`
 	margin: 30px 0;
 	width: 280px;
@@ -20,7 +21,9 @@ const List = (props) => {
       {
         props.recommendList.map(recommend => {
           return (
-            <RecommendItem key={recommend.get('id')} imgUrl={recommend.get('imgUrl')}></RecommendItem>
+            <Link to="/detail" key={recommend.get('id')}>
+              <RecommendItem imgUrl={recommend.get('imgUrl')}></RecommendItem>
+            </Link>
           )
         })
       }

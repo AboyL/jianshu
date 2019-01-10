@@ -26,14 +26,13 @@ const Home = (props) => {
   useEffect(() => {
     props.initHomeData()
   })
+  // 设置true使得副作用只发生一次，模拟mounted以及willMounted的效果
   useEffect(() => {
     const scrollEventer = (e) => {
       setShowTop(document.documentElement.scrollTop > 100)
     }
-    console.log('加绑定')
     window.addEventListener('scroll', scrollEventer)
     return () => {
-      console.log('解除')
       window.removeEventListener('scroll', scrollEventer);
     }
   },[true])
