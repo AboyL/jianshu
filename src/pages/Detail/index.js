@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { actionCreators } from './store'
+import { Redirect } from 'react-router-dom'
 const DetailWrapper = styled.div`
 	overflow: hidden;
 	width: 620px;
@@ -35,6 +36,9 @@ const Detail = (props) => {
 	useEffect(() => {
 		props.handleDetail('1')
 	},true)
+	if(!props.loginStatus){
+		return <Redirect to="/login"/>
+	}
 	return (
 		<DetailWrapper>
 			<Header>{props.detail.title}</Header>
@@ -45,7 +49,8 @@ const Detail = (props) => {
 	)
 }
 const mapState = (state) => ({
-	detail:state.getIn(['detail','detail'])
+	detail:state.getIn(['detail','detail']),
+	loginStatus:state.getIn(['login','logoinStatus'])
 });
 
 const mapDispatch = (dispatch) => ({
