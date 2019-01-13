@@ -21,7 +21,7 @@ const List = (props) => {
       {
         props.recommendList.map(recommend => {
           return (
-            <Link to="/detail" key={recommend.get('id')}>
+            <Link to={"/detail/" + recommend.get('id')} key={recommend.get('id')}>
               <RecommendItem imgUrl={recommend.get('imgUrl')}></RecommendItem>
             </Link>
           )

@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import store from './store'
 import Header from './components/Header/index'
 import Home from './pages/Home'
-import Detail from './pages/Detail'
+import Detail from './pages/Detail/loadable.js'
 import Login from './pages/Login'
 class App extends Component {
   render () {
@@ -17,7 +17,7 @@ class App extends Component {
             <>
               <Header />
               <Route path='/' exact component={Home}></Route>
-              <Route path='/detail' exact component={Detail}></Route>
+              <Route path='/detail/:id' exact component={Detail}></Route>
               <Route path='/Login' exact component={Login}></Route>
             </>
           </BrowserRouter>

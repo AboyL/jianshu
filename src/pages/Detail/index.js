@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { actionCreators } from './store'
-import { Redirect } from 'react-router-dom'
+import { Redirect,withRouter } from 'react-router-dom'
 const DetailWrapper = styled.div`
 	overflow: hidden;
 	width: 620px;
@@ -34,7 +34,7 @@ const Content = styled.div`
 `;
 const Detail = (props) => {
 	useEffect(() => {
-		props.handleDetail('1')
+		props.handleDetail(props.match.params.id)
 	},true)
 	if(!props.loginStatus){
 		return <Redirect to="/login"/>
@@ -59,4 +59,4 @@ const mapDispatch = (dispatch) => ({
 	}
 });
 
-export default connect(mapState, mapDispatch)(Detail);
+export default connect(mapState, mapDispatch)(withRouter(Detail));
