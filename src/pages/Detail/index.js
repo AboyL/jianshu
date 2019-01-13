@@ -50,7 +50,7 @@ const Detail = (props) => {
 }
 const mapState = (state) => ({
 	detail:state.getIn(['detail','detail']),
-	loginStatus:state.getIn(['login','logoinStatus'])
+	loginStatus:state.getIn(['login','loginStatus'])
 });
 
 const mapDispatch = (dispatch) => ({
