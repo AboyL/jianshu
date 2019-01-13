@@ -48,14 +48,8 @@ Mock.mock('api/init_home', 'post', () => {
         id: '0',
         imgUrl: '//cdn2.jianshu.io/assets/web/banner-s-3-7123fd94750759acf7eca05b871e9d17.png',
       }, {
-        id: '1',
-        imgUrl: '//cdn2.jianshu.io/assets/web/banner-s-4-b70da70d679593510ac93a172dfbaeaa.png'
-      }, {
         id: '2',
         imgUrl: '//cdn2.jianshu.io/assets/web/banner-s-3-7123fd94750759acf7eca05b871e9d17.png',
-      }, {
-        id: '3',
-        imgUrl: '//cdn2.jianshu.io/assets/web/banner-s-4-b70da70d679593510ac93a172dfbaeaa.png'
       }]
     }
   }
