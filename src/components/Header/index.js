@@ -16,6 +16,8 @@ import {
 } from './style'
 import { connect } from 'react-redux'
 import { actionCreators } from './store'
+import { actionCreators as LoginActionCreators } from '../../pages/Login/store'
+import { Link } from 'react-router-dom'
 
 const Header = (props) => {
   const [focused, setFocused] = useState(0)
@@ -28,10 +30,10 @@ const Header = (props) => {
           <SearchInfoTitle>
             热门搜索
         <SearchInfoSwicth onClick={() => {
-              setSpin(spin+360);
+              setSpin(spin + 360);
               props.handleSwitch(props.hotSeachPage, props.hotSearchTotal)
             }}
-            spin={spin}
+              spin={spin}
             >
               <i className="iconfont icon-spin spin "></i>
               换一换
@@ -62,7 +64,12 @@ const Header = (props) => {
       <Nav>
         <NavItem className="left active">首页</NavItem>
         <NavItem className="left">下载</NavItem>
-        <NavItem className="right">登陆</NavItem>
+        {props.loginStatus ?
+          <NavItem className="right" onClick={() => { props.logout() }}>退出登录</NavItem> :
+          <Link to="/login">
+            <NavItem className="right">登陆</NavItem>
+          </Link>
+        }
         <NavItem className="right">
           <i className="iconfont icon-Aa"></i>
         </NavItem>
@@ -93,6 +100,7 @@ const mapStateToProps = (state) => {
     hotSeachPage: state.getIn(['header', 'hotSeachPage']),
     hotSeachPageSize: state.getIn(['header', 'hotSeachPageSize']),
     hotSearchTotal: state.getIn(['header', 'hotSearchTotal']),
+    loginStatus: state.getIn(['login', 'loginStatus'])
   }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -109,6 +117,9 @@ const mapDispatchToProps = (dispatch) => {
       } else {
         dispatch(actionCreators.hotSearchPageChange(++page))
       }
+    },
+    logout(){
+      dispatch(LoginActionCreators.logout())
     }
   }
 }
